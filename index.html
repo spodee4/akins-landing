@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akins Fresh Market — Fresh, Local, Community-Focused</title>
+  <meta name="description" content="Akins Fresh Market — your neighborhood grocery store in Central Washington. Fresh produce, quality meats, weekly specials.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/akins-logo-color.png" alt="Akins Fresh Market">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="weekly-ad.html">Weekly Ad</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-slides" id="heroSlides">
+
+      <div class="hero-slide slide-1">
+        <div class="slide-bg"></div>
+        <div class="hero-content">
+          <h1>Fresh, Local, Community&#8209;Focused</h1>
+          <p>Your neighborhood grocery store in Central Washington. Quality produce, meats, and everyday essentials.</p>
+          <a href="locations.html" class="hero-cta">Find a Store</a>
+        </div>
+      </div>
+
+      <div class="hero-slide slide-2">
+        <div class="slide-bg"></div>
+        <div class="hero-content">
+          <h1>This Week's Best Deals</h1>
+          <p>Check out our weekly ad for savings on the brands and products you love.</p>
+          <a href="weekly-ad.html" class="hero-cta">View Weekly Ad</a>
+        </div>
+      </div>
+
+      <div class="hero-slide slide-3">
+        <div class="slide-bg"></div>
+        <div class="hero-content">
+          <h1>Serving 5 Communities Across Washington</h1>
+          <p>From Quincy to Oroville, we're proud to be your local market.</p>
+          <a href="locations.html" class="hero-cta">Our Stores</a>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="hero-arrow prev" onclick="moveSlide(-1)" aria-label="Previous">&#10094;</button>
+    <button class="hero-arrow next" onclick="moveSlide(1)" aria-label="Next">&#10095;</button>
+
+    <div class="hero-dots" id="heroDots">
+      <button class="hero-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+      <button class="hero-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+      <button class="hero-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/akins-logo-white.png" alt="Akins Fresh Market">
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="weekly-ad.html">Weekly Ad</a></li>
+      </ul>
+      <div class="footer-text">
+        &copy; 2026 Akins Markets, Inc. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let current = 0;
+    const slides = document.getElementById('heroSlides');
+    const dots = document.querySelectorAll('.hero-dot');
+    const total = 3;
+    let autoplay;
+    function goToSlide(n) {
+      current = n;
+      slides.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      resetAutoplay();
+    }
+    function moveSlide(dir) { goToSlide((current + dir + total) % total); }
+    function resetAutoplay() {
+      clearInterval(autoplay);
+      autoplay = setInterval(() => moveSlide(1), 6000);
+    }
+    resetAutoplay();
+
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+  </script>
+
+</body>
+</html>
