@@ -117,12 +117,22 @@
           <div class="ad-frame-header">
             <h3>Current Weekly Ad</h3>
             <span class="ad-date" id="adDate"></span>
+            <label class="ad-store-pick">
+              <span>Store</span>
+              <select id="storeSelect" aria-label="Choose your store">
+                <option value="quincy">Quincy</option>
+                <option value="oroville">Oroville</option>
+                <option value="soap-lake">Soap Lake</option>
+                <option value="goldendale">Goldendale (Holcomb's Market)</option>
+                <option value="ritzville">Ritzville</option>
+              </select>
+            </label>
             <div class="ad-frame-actions">
               <button class="ad-action-btn" onclick="printAd()" title="Print Weekly Ad">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
                 Print
               </button>
-              <a class="ad-action-btn" href="weekly-ad/current.pdf" download title="Download PDF">
+              <a class="ad-action-btn" id="adDownload" href="weekly-ad/current.pdf" download title="Download PDF">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download
               </a>
@@ -177,7 +187,28 @@
   </footer>
 
   <script type="module">
-    const AD_URL = 'weekly-ad/current.pdf';
+    // Per-store ads: weekly-ad/stores.json maps a store to its own PDF for the
+    // week; any store not listed gets current.pdf (the all-stores ad).
+    const STORE_KEY = 'akinsAdStore';
+    const select = document.getElementById('storeSelect');
+    const params = new URLSearchParams(location.search);
+    let store = params.get('store');
+    if (!store) { try { store = localStorage.getItem(STORE_KEY); } catch (e) {} }
+    if (store && [...select.options].some(o => o.value === store)) select.value = store;
+    let AD_URL = 'weekly-ad/current.pdf';
+    try {
+      const map = await (await fetch('weekly-ad/stores.json', { cache: 'no-store' })).json();
+      // Overrides only apply in the ad week they were set for (Wed start, local time).
+      const n = new Date(); const w = new Date(n); w.setDate(n.getDate() - ((n.getDay() + 4) % 7));
+      const wk = `${w.getFullYear()}-${String(w.getMonth() + 1).padStart(2, '0')}-${String(w.getDate()).padStart(2, '0')}`;
+      if (map && map.week === wk && map.stores && map.stores[select.value]) AD_URL = 'weekly-ad/' + map.stores[select.value];
+    } catch (e) {}
+    document.getElementById('adDownload').href = AD_URL;
+    select.addEventListener('change', () => {
+      try { localStorage.setItem(STORE_KEY, select.value); } catch (e) {}
+      const u = new URL(location.href); u.searchParams.set('store', select.value);
+      location.href = u.toString();
+    });
 
     // Ad week dates (Wed-Tue)
     const now = new Date();
