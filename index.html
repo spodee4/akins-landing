@@ -4,119 +4,158 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akins Fresh Market — Fresh, Local, Community-Focused</title>
-  <meta name="description" content="Akins Fresh Market — your neighborhood grocery store in Central Washington. Fresh produce, quality meats, weekly specials.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta name="description" content="Akins Fresh Market — family-owned grocery stores in Quincy, Soap Lake, Oroville and Ritzville, plus Holcomb's Market in Goldendale. Weekly ad, store hours and directions.">
+  <meta name="theme-color" content="#194a3b">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; worker-src blob: https://cdnjs.cloudflare.com;">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <div class="util">
+    <span>Family-owned in Central &amp; Eastern Washington <span class="hide-sm">since 1963</span></span>
+    <span>This week's ad runs <b id="utilWeek">Wed&ndash;Tue</b> &middot; <a href="weekly-ad.html">See it</a></span>
+  </div>
+
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="assets/akins-logo-color.png" alt="Akins Fresh Market">
-      </a>
+      <a href="index.html" class="nav-logo"><img src="assets/akins-logo-color.png" alt="Akins Fresh Market"></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="locations.html">Locations</a></li>
         <li><a href="weekly-ad.html">Weekly Ad</a></li>
+        <li><a href="locations.html">Stores &amp; Hours</a></li>
       </ul>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <span class="sp"></span>
+      <a href="weekly-ad.html" class="btn main nav-cta">This week's deals</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <section class="hero" id="hero">
-    <div class="hero-slides" id="heroSlides">
+  <div class="wrap">
 
-      <div class="hero-slide slide-1">
-        <div class="slide-bg"></div>
-        <div class="hero-content">
-          <h1>Fresh, Local, Community&#8209;Focused</h1>
-          <p>Your neighborhood grocery store in Central Washington. Quality produce, meats, and everyday essentials.</p>
-          <a href="locations.html" class="hero-cta">Find a Store</a>
+    <section class="hero">
+      <div class="ht">
+        <div class="eyebrow">Weekly ad &middot; <span id="heroWeek">this week</span></div>
+        <h1>Fresh, local, and priced for this week.</h1>
+        <p>Five neighborhood stores across Washington. Flip through this week's ad, then find the store closest to you.</p>
+        <div class="acts">
+          <a href="weekly-ad.html" class="btn hi">See this week's ad</a>
+          <a href="locations.html" class="btn ghost-dark">Find a store</a>
         </div>
       </div>
-
-      <div class="hero-slide slide-2">
-        <div class="slide-bg"></div>
-        <div class="hero-content">
-          <h1>This Week's Best Deals</h1>
-          <p>Check out our weekly ad for savings on the brands and products you love.</p>
-          <a href="weekly-ad.html" class="hero-cta">View Weekly Ad</a>
-        </div>
+      <div class="adpeek">
+        <a href="weekly-ad.html" aria-label="Open this week's ad">
+          <canvas id="adPeek" hidden></canvas>
+          <div class="ph" id="adPeekPh">This week's ad</div>
+        </a>
+        <span class="tag">New every Wednesday</span>
       </div>
+    </section>
 
-      <div class="hero-slide slide-3">
-        <div class="slide-bg"></div>
-        <div class="hero-content">
-          <h1>Serving 5 Communities Across Washington</h1>
-          <p>From Quincy to Oroville, we're proud to be your local market.</p>
-          <a href="locations.html" class="hero-cta">Our Stores</a>
-        </div>
-      </div>
-
+    <div class="tiles">
+      <a class="tile" href="weekly-ad.html"><span class="k">1</span><b>Weekly ad</b><span>Every deal for your store, Wednesday through Tuesday. Print or download it.</span></a>
+      <a class="tile" href="locations.html"><span class="k">2</span><b>Stores &amp; hours</b><span>Addresses, phone numbers, today's hours and directions for all five stores.</span></a>
+      <a class="tile" href="tel:+15097874421"><span class="k">3</span><b>Call Quincy</b><span>(509) 787-4421 &middot; open 5:30 AM to 11 PM every day.</span></a>
     </div>
 
-    <button class="hero-arrow prev" onclick="moveSlide(-1)" aria-label="Previous">&#10094;</button>
-    <button class="hero-arrow next" onclick="moveSlide(1)" aria-label="Next">&#10095;</button>
-
-    <div class="hero-dots" id="heroDots">
-      <button class="hero-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
-      <button class="hero-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
-      <button class="hero-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+    <div class="sechd">
+      <h2 class="s">Our stores</h2>
+      <span class="asof">Open status uses Pacific time</span>
     </div>
-  </section>
+    <div class="stores-grid">
+      <div class="store-card" data-open="5:30" data-close="23:00">
+        <div class="top"><div class="banner">Akins Fresh Market</div><span class="chip-open"></span></div>
+        <h3>Quincy</h3>
+        <div class="store-detail"><span class="lbl">Where</span><span>106 F St SW, Quincy, WA 98848</span></div>
+        <div class="store-detail"><span class="lbl">Hours</span><span>Every day, 5:30 AM &ndash; 11:00 PM</span></div>
+        <div class="store-actions">
+          <a class="btn main" href="https://maps.google.com/?q=106+F+St+SW+Quincy+WA+98848" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" href="tel:+15097874421">(509) 787-4421</a>
+        </div>
+      </div>
+      <div class="store-card" data-open="7:00" data-close="21:00">
+        <div class="top"><div class="banner">Akins Fresh Market</div><span class="chip-open"></span></div>
+        <h3>Soap Lake</h3>
+        <div class="store-detail"><span class="lbl">Where</span><span>115 Daisy St S, Soap Lake, WA 98851</span></div>
+        <div class="store-detail"><span class="lbl">Hours</span><span>Every day, 7:00 AM &ndash; 9:00 PM</span></div>
+        <div class="store-actions">
+          <a class="btn main" href="https://maps.google.com/?q=115+Daisy+St+S+Soap+Lake+WA+98851" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" href="tel:+15092461332">(509) 246-1332</a>
+        </div>
+      </div>
+      <div class="store-card" data-open="7:00" data-close="21:00">
+        <div class="top"><div class="banner">Akins Fresh Market</div><span class="chip-open"></span></div>
+        <h3>Oroville</h3>
+        <div class="store-detail"><span class="lbl">Where</span><span>1000 23rd Ave, Oroville, WA 98844</span></div>
+        <div class="store-detail"><span class="lbl">Hours</span><span>Every day, 7:00 AM &ndash; 9:00 PM</span></div>
+        <div class="store-actions">
+          <a class="btn main" href="https://maps.google.com/?q=1000+23rd+Ave+Oroville+WA+98844" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" href="tel:+15094763651">(509) 476-3651</a>
+        </div>
+      </div>
+      <div class="store-card" data-open="7:00" data-close="22:00">
+        <div class="top"><div class="banner">Holcomb's Market</div><span class="chip-open"></span></div>
+        <h3>Goldendale</h3>
+        <div class="store-detail"><span class="lbl">Where</span><span>320 S Columbus Ave, Goldendale, WA 98620</span></div>
+        <div class="store-detail"><span class="lbl">Hours</span><span>Every day, 7:00 AM &ndash; 10:00 PM</span></div>
+        <div class="store-actions">
+          <a class="btn main" href="https://maps.google.com/?q=320+S+Columbus+Ave+Goldendale+WA+98620" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" href="tel:+15097734958">(509) 773-4958</a>
+        </div>
+      </div>
+      <div class="store-card" data-open="7:00" data-close="21:00">
+        <div class="top"><div class="banner">Akins Fresh Market</div><span class="chip-open"></span></div>
+        <h3>Ritzville</h3>
+        <div class="store-detail"><span class="lbl">Where</span><span>610 W 1st Ave, Ritzville, WA 99169</span></div>
+        <div class="store-detail"><span class="lbl">Hours</span><span>Every day, 7:00 AM &ndash; 9:00 PM</span></div>
+        <div class="store-actions">
+          <a class="btn main" href="https://maps.google.com/?q=610+W+1st+Ave+Ritzville+WA+99169" target="_blank" rel="noopener">Directions</a>
+          <a class="btn ghost" href="tel:+15096591398">(509) 659-1398</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="story">
+      <div class="yr">1963</div>
+      <div>
+        <h2>Started in Quincy. Still family-run.</h2>
+        <p>Arlis Akins opened the first store in Quincy in 1963. Three generations later, the same family runs five stores across Washington.</p>
+      </div>
+    </section>
+
+  </div>
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="assets/akins-logo-white.png" alt="Akins Fresh Market">
-      </div>
+      <div class="footer-logo"><img src="assets/akins-logo-white.png" alt="Akins Fresh Market"></div>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="locations.html">Locations</a></li>
         <li><a href="weekly-ad.html">Weekly Ad</a></li>
+        <li><a href="locations.html">Stores &amp; Hours</a></li>
       </ul>
-      <div class="footer-text">
-        &copy; 2026 Akins Markets, Inc. All rights reserved.
-      </div>
+      <div class="footer-text">&copy; 2026 Akins Markets, Inc. All rights reserved.</div>
     </div>
   </footer>
 
-  <script>
-    let current = 0;
-    const slides = document.getElementById('heroSlides');
-    const dots = document.querySelectorAll('.hero-dot');
-    const total = 3;
-    let autoplay;
-    function goToSlide(n) {
-      current = n;
-      slides.style.transform = `translateX(-${current * 100}%)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
-      resetAutoplay();
-    }
-    function moveSlide(dir) { goToSlide((current + dir + total) % total); }
-    function resetAutoplay() {
-      clearInterval(autoplay);
-      autoplay = setInterval(() => moveSlide(1), 6000);
-    }
-    resetAutoplay();
-
-    const toggle = document.getElementById('mobileToggle');
-    const navLinks = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+  <script src="site.js"></script>
+  <script type="module">
+    // Hero peek: page 1 of this week's all-stores ad, drawn from the same PDF the weekly ad update replaces.
+    try {
+      const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.mjs';
+      const doc = await pdfjsLib.getDocument('weekly-ad/current.pdf').promise;
+      const page = await doc.getPage(1);
+      const canvas = document.getElementById('adPeek');
+      const scale = (680 / page.getViewport({ scale: 1 }).width);
+      const vp = page.getViewport({ scale });
+      canvas.width = vp.width; canvas.height = vp.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      canvas.hidden = false;
+      document.getElementById('adPeekPh').hidden = true;
+    } catch (e) {}
   </script>
-
 </body>
 </html>
