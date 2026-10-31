@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
  <g transform="translate(485.0 513.0) rotate(32) scale(0.4349734513274336) translate(-1277 -1400)">
  <defs>
-    <mask id="v3x40ccut" maskUnits="userSpaceOnUse" x="0" y="0" width="2550" height="3300">
+    <mask id="v3gr40ccut" maskUnits="userSpaceOnUse" x="0" y="0" width="2550" height="3300">
       <rect x="0" y="0" width="2550" height="3300" fill="#fff"/>
       <g fill="#000">
       <rect x="709" y="1102" width="574" height="148" rx="74" transform="rotate(-22.6 1209 1176)"/>
@@ -9,16 +9,16 @@
       <rect x="677" y="1693" width="574" height="148" rx="74" transform="rotate(-22.6 1177 1767)"/>
       </g>
     </mask>
-    <clipPath id="v3x40cclip"><path d="M905,1150 C898,1035 990,952 1170,926 C1250,914 1340,914 1410,926 C1555,950 1665,1035 1650,1170 C1635,1620 1555,2150 1452,2540 C1420,2660 1350,2695 1285,2695 C1210,2695 1145,2660 1132,2560 Z"/></clipPath>
+    <clipPath id="v3gr40cclip"><path d="M905,1150 C898,1035 990,952 1170,926 C1250,914 1340,914 1410,926 C1555,950 1665,1035 1650,1170 C1635,1620 1555,2150 1452,2540 C1420,2660 1350,2695 1285,2695 C1210,2695 1145,2660 1132,2560 Z"/></clipPath>
   </defs>
-  <g mask="url(#v3x40ccut)">
+  <g mask="url(#v3gr40ccut)">
     <path fill="#F58821" d="M905,1150 C898,1035 990,952 1170,926 C1250,914 1340,914 1410,926 C1555,950 1665,1035 1650,1170 C1635,1620 1555,2150 1452,2540 C1420,2660 1350,2695 1285,2695 C1210,2695 1145,2660 1132,2560 Z"/>
-    <path fill="#E2701A" clip-path="url(#v3x40cclip)" d="M1420,880 C1440,1500 1405,2150 1310,2760 L1800,2760 L1800,880 Z"/>
+    <path fill="#E2701A" clip-path="url(#v3gr40cclip)" d="M1420,880 C1440,1500 1405,2150 1310,2760 L1800,2760 L1800,880 Z"/>
   </g>
   <g><path fill="#008F41" stroke="#008F41" stroke-width="62" stroke-linejoin="round" d="M1128,820 C1124,560 1166,330 1220,150 C1236,104 1306,116 1298,168 C1262,330 1250,560 1298,820 Z"/>
     <path fill="#00B050" stroke="#00B050" stroke-width="62" stroke-linejoin="round" d="M942,520 C1040,556 1122,632 1176,770 L1180,880 L1088,880 C1082,745 1005,652 914,606 C876,588 890,512 942,520 Z"/>
-    <path fill="#00B050" stroke="#00B050" stroke-width="40" stroke-linejoin="round" d="M1225,830 C1259,600 1366,413 1491,245 C1525,200 1612,230 1586,299 C1482,425 1416,600 1420,780 C1422,840 1430,875 1440,906 L1300,880 Z"/>
-    <path fill="#00B050" stroke="#00B050" stroke-width="40" stroke-linejoin="round" d="M1077,780 L1412,780 C1414,835 1428,872 1440,906 C1330,872 1200,874 1077,914 Z"/>
+    <path fill="#00B050" stroke="#00B050" stroke-width="40" stroke-linejoin="round" d="M1225,830 C1259,600 1366,413 1491,245 C1525,200 1612,230 1586,299 C1482,425 1416,600 1420,780 C1422,830 1426,860 1432,885 L1300,880 Z"/>
+    <path fill="#00B050" stroke="#00B050" stroke-width="40" stroke-linejoin="round" d="M1077,780 L1420,780 C1422,830 1426,860 1432,885 C1440,905 1430,918 1410,910 C1320,876 1200,878 1105,906 C1086,912 1077,904 1077,885 Z"/>
   </g>
  </g>
 </svg>
