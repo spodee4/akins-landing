@@ -128,7 +128,7 @@ h2.s { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp
 .footer { background: var(--main2); color: #cfe0d8; margin-top: 72px; }
 .footer-inner { max-width: 1440px; margin: 0 auto; padding: 40px var(--pad); display: flex; gap: 24px 48px; align-items: center; flex-wrap: wrap; }
 .footer-logo img { height: 44px; width: auto; }
-.footer-links { display: flex; gap: 24px; list-style: none; font-weight: 600; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; font-weight: 600; }
 .footer-links a { text-decoration: none; color: #fff; }
 .footer-links a:hover { color: var(--hi); }
 .footer-text { margin-left: auto; font-size: 13.5px; }

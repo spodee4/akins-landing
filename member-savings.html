@@ -140,7 +140,6 @@
         <div class="ad-frame-wrapper">
           <div class="ad-frame-header">
             <h3>Current Member Savings</h3>
-            <span class="ad-date" id="adDate"></span>
             <div class="ad-frame-actions">
               <button class="ad-action-btn" onclick="printAd()" title="Print Member Savings">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -201,15 +200,6 @@
     // Member savings is one PDF for every store, replaced each time NWG sends a new one.
     const AD_URL = 'member-savings/current.pdf';
 
-    // Ad week dates (Wed-Tue)
-    const now = new Date();
-    const day = now.getDay();
-    const wed = new Date(now);
-    wed.setDate(now.getDate() - ((day + 4) % 7));
-    const tue = new Date(wed);
-    tue.setDate(wed.getDate() + 6);
-    const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    document.getElementById('adDate').textContent = `${fmt(wed)} — ${fmt(tue)}`;
 
     // PDF.js setup
     const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs');
