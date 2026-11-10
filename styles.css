@@ -161,3 +161,9 @@ h2.s { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp
   .btn:hover, .tile:hover { transform: none; }
   .adpeek a, .adpeek a:hover { transform: none; }
 }
+
+/* Member-savings link band (weekly ad page) */
+.savings-band { display: flex; align-items: center; gap: 14px 20px; flex-wrap: wrap; margin: 8px auto 0; max-width: 1440px; padding: 16px 22px; border-radius: 18px; background: var(--hi); color: var(--main2); text-decoration: none; }
+.savings-band .savings-k { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px; }
+.savings-band .savings-t { font-weight: 600; flex: 1 1 220px; }
+.savings-band:hover .btn { transform: translateY(-1px); }

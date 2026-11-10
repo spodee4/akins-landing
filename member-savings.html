@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#194a3b">
+  <title>Member Savings — Akins Fresh Market</title>
+  <meta name="description" content="See this week&#x27;s Akins Fresh Market member savings: digital deals that go beyond the weekly ad.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; worker-src blob:;">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs" type="module" integrity="sha384-ZCFxELU1bvPx4evkYZ+4CxkApXPjaMxGVdWGuBjqwJe5aBdx8oSItpalx5V4e5Yh" crossorigin="anonymous"></script>
+  <style>
+    .pdf-viewer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      background: var(--bg);
+      min-height: 500px;
+    }
+    .pdf-canvas-wrap {
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,26,35,0.16);
+      line-height: 0;
+    }
+    .pdf-canvas-wrap canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    .pdf-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 20px 0;
+      user-select: none;
+    }
+    .pdf-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--main);
+      background: var(--card);
+      color: var(--main);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pdf-nav-btn:hover:not(:disabled) {
+      background: var(--main);
+      color: white;
+    }
+    .pdf-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .pdf-page-info {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      min-width: 100px;
+      text-align: center;
+    }
+    .pdf-loading {
+      padding: 80px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .pdf-loading .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--line);
+      border-top-color: var(--main);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <link rel="canonical" href="https://akinsmarket.com/member-savings.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akins Fresh Market">
+  <meta property="og:title" content="Member Savings — Akins Fresh Market">
+  <meta property="og:description" content="See this week&#x27;s Akins Fresh Market member savings: digital deals that go beyond the weekly ad.">
+  <meta property="og:url" content="https://akinsmarket.com/member-savings.html">
+  <meta property="og:image" content="https://akinsmarket.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Akins Fresh Market carrot logo on green">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Member Savings — Akins Fresh Market">
+  <meta name="twitter:description" content="See this week&#x27;s Akins Fresh Market member savings: digital deals that go beyond the weekly ad.">
+  <meta name="twitter:image" content="https://akinsmarket.com/og-image.png">
+</head>
+<body>
+
+
+  <div class="util">
+    <span>Family-owned in Central &amp; Eastern Washington <span class="hide-sm">since 1963</span></span>
+    <span>This week's ad runs <b id="utilWeek">Wed&ndash;Tue</b> &middot; <a href="weekly-ad.html">See it</a></span>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/akins-logo-color.png" alt="Akins Fresh Market"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="weekly-ad.html">Weekly Ad</a></li>
+        <li><a href="member-savings.html" class="active">Member Savings</a></li>
+        <li><a href="locations.html">Stores &amp; Hours</a></li>
+      </ul>
+      <span class="sp"></span>
+      <a href="weekly-ad.html" class="btn main nav-cta">This week's deals</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="eyebrow">Member savings</div>
+    <h1>Member savings</h1>
+    <p>Digital deals that go beyond the weekly ad. Prices and limits are on each deal. <a href="weekly-ad.html">See this week's ad</a></p>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="weekly-ad-container">
+        <div class="ad-frame-wrapper">
+          <div class="ad-frame-header">
+            <h3>Current Member Savings</h3>
+            <span class="ad-date" id="adDate"></span>
+            <div class="ad-frame-actions">
+              <button class="ad-action-btn" onclick="printAd()" title="Print Member Savings">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print
+              </button>
+              <a class="ad-action-btn" id="adDownload" href="member-savings/current.pdf" download title="Download PDF">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </a>
+            </div>
+          </div>
+
+          <div id="adContent">
+            <div class="pdf-loading" id="pdfLoading">
+              <div class="spinner"></div>
+              <p>Loading member savings...</p>
+            </div>
+            <div class="pdf-viewer" id="pdfViewer" style="display:none;">
+              <div class="pdf-controls" id="controlsTop">
+                <button class="pdf-nav-btn" onclick="changePage(-1)" aria-label="Previous page">&#10094;</button>
+                <span class="pdf-page-info pdf-page-info-top">Page 1 of 1</span>
+                <button class="pdf-nav-btn" onclick="changePage(1)" aria-label="Next page">&#10095;</button>
+              </div>
+              <div class="pdf-canvas-wrap">
+                <canvas id="pdfCanvas"></canvas>
+              </div>
+              <div class="pdf-controls" id="controlsBottom">
+                <button class="pdf-nav-btn" onclick="changePage(-1)" aria-label="Previous page">&#10094;</button>
+                <span class="pdf-page-info pdf-page-info-bottom">Page 1 of 1</span>
+                <button class="pdf-nav-btn" onclick="changePage(1)" aria-label="Next page">&#10095;</button>
+              </div>
+            </div>
+            <div class="ad-placeholder" id="adPlaceholder" style="display:none;">
+              <p>Member savings are on the way.<br><a href="weekly-ad.html">See this week's ad</a> in the meantime.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/akins-logo-white.png" alt="Akins Fresh Market"></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="weekly-ad.html">Weekly Ad</a></li>
+        <li><a href="member-savings.html">Member Savings</a></li>
+        <li><a href="locations.html">Stores &amp; Hours</a></li>
+      </ul>
+      <div class="footer-text">&copy; 2026 Akins Markets, Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+
+  <script type="module">
+    // Member savings is one PDF for every store, replaced each time NWG sends a new one.
+    const AD_URL = 'member-savings/current.pdf';
+
+    // Ad week dates (Wed-Tue)
+    const now = new Date();
+    const day = now.getDay();
+    const wed = new Date(now);
+    wed.setDate(now.getDate() - ((day + 4) % 7));
+    const tue = new Date(wed);
+    tue.setDate(wed.getDate() + 6);
+    const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    document.getElementById('adDate').textContent = `${fmt(wed)} — ${fmt(tue)}`;
+
+    // PDF.js setup
+    const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.mjs';
+
+    let pdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 0;
+    let rendering = false;
+
+    const canvas = document.getElementById('pdfCanvas');
+    const ctx = canvas.getContext('2d');
+
+    async function renderPage(num) {
+      if (rendering) return;
+      rendering = true;
+      const page = await pdfDoc.getPage(num);
+      const vw = Math.min(900, window.innerWidth - 80);
+      const unscaledViewport = page.getViewport({ scale: 1 });
+      const scale = vw / unscaledViewport.width;
+      const dpr = window.devicePixelRatio || 1;
+      const viewport = page.getViewport({ scale: scale * dpr });
+
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.width = (viewport.width / dpr) + 'px';
+      canvas.style.height = (viewport.height / dpr) + 'px';
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      document.querySelectorAll('.pdf-page-info').forEach(el => el.textContent = `Page ${num} of ${totalPages}`);
+      document.querySelectorAll('.pdf-controls').forEach(ctrl => {
+        const btns = ctrl.querySelectorAll('.pdf-nav-btn');
+        btns[0].disabled = num <= 1;
+        btns[1].disabled = num >= totalPages;
+      });
+      rendering = false;
+    }
+
+    window.changePage = function(delta) {
+      const newPage = currentPage + delta;
+      if (newPage >= 1 && newPage <= totalPages) {
+        currentPage = newPage;
+        renderPage(currentPage);
+      }
+    };
+
+    window.printAd = function() {
+      window.open(AD_URL, '_blank');
+    };
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changePage(-1);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changePage(1);
+    });
+
+    // Load PDF
+    try {
+      const res = await fetch(AD_URL, { method: 'HEAD' });
+      if (!res.ok) throw new Error('No PDF');
+
+      pdfDoc = await pdfjsLib.getDocument(AD_URL).promise;
+      totalPages = pdfDoc.numPages;
+      document.getElementById('pdfLoading').style.display = 'none';
+      document.getElementById('pdfViewer').style.display = 'flex';
+      renderPage(1);
+
+      // Re-render on resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => renderPage(currentPage), 200);
+      });
+    } catch(e) {
+      document.getElementById('pdfLoading').style.display = 'none';
+      document.getElementById('adPlaceholder').style.display = 'block';
+    }
+  </script>
+
+  <script src="site.js"></script>
+
+</body>
+</html>
