@@ -29,7 +29,35 @@ def carrot_group(x, y, size):
     inner = re.search(r"<svg[^>]*>(.*)</svg>", svg, re.S).group(1)
     inner = inner.replace('id="v3gr40ccut"', 'id="qrcut"').replace("url(#v3gr40ccut)", "url(#qrcut)")
     inner = inner.replace('id="v3gr40cclip"', 'id="qrclip"').replace("url(#v3gr40cclip)", "url(#qrclip)")
+    # The favicon cuts the carrot's 3 lines with an SVG <mask>. cairo (our PNG renderer) and many
+    # design tools ignore masks, so the lines vanished (John 2026-11-09). Rebuild the same cut as an
+    # even-odd clipPath: the mask's white rect with each black rotated stadium as a hole.
+    mask = re.search(r'<mask id="qrcut"[^>]*>(.*?)</mask>', inner, re.S)
+    rects = re.findall(r'<rect x="([\d.]+)" y="([\d.]+)" width="([\d.]+)" height="([\d.]+)" rx="([\d.]+)" '
+                       r'transform="rotate\(([-\d.]+) ([\d.]+) ([\d.]+)\)"/>', mask.group(1))
+    if len(rects) != 3:
+        raise SystemExit(f"carrot mask changed shape: expected 3 cut lines, found {len(rects)}")
+    holes = " ".join(stadium_path(*map(float, r)) for r in rects)
+    clip = (f'<clipPath id="qrcuts" clipPathUnits="userSpaceOnUse"><path clip-rule="evenodd" '
+            f'd="M0,0 H2550 V3300 H0 Z {holes}"/></clipPath>')
+    inner = inner.replace(mask.group(0), clip).replace('mask="url(#qrcut)"', 'clip-path="url(#qrcuts)"')
     return f'<g transform="translate({x} {y}) scale({size / 1024})">{inner}</g>'
+
+
+def stadium_path(x, y, w, h, rx, deg, cx, cy, steps=24):
+    """Polygon path for a rounded rect (rx = h/2 stadium) rotated by deg about (cx, cy)."""
+    import math
+    r = min(rx, h / 2, w / 2)
+    pts = []
+    for (ax, ay, a0) in ((x + w - r, y + r, -90), (x + w - r, y + h - r, 0), (x + r, y + h - r, 90), (x + r, y + r, 180)):
+        for i in range(steps + 1):
+            t = math.radians(a0 + 90 * i / steps)
+            pts.append((ax + r * math.cos(t), ay + r * math.sin(t)))
+    th = math.radians(deg)
+    rot = [(cx + (px - cx) * math.cos(th) - (py - cy) * math.sin(th),
+            cy + (px - cx) * math.sin(th) + (py - cy) * math.cos(th)) for px, py in pts]
+    rot.reverse()  # counter-clockwise = a hole under BOTH fill rules (cairo ignored evenodd here)
+    return "M" + " L".join(f"{px:.1f},{py:.1f}" for px, py in rot) + " Z"
 
 
 def build(url):
