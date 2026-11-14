@@ -167,3 +167,27 @@ h2.s { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp
 .savings-band .savings-k { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px; }
 .savings-band .savings-t { font-weight: 600; flex: 1 1 220px; }
 .savings-band:hover .btn { transform: translateY(-1px); }
+
+/* Shopper app legal and help pages (app-privacy, app-terms, app-support) */
+.legal { max-width: 46rem; margin: 0 auto; padding: 0 var(--pad); font-size: 17px; line-height: 1.6; }
+.legal h2 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(22px, 2.4vw, 26px); line-height: 1.2; margin: 36px 0 10px; }
+.legal h3 { font-size: 17px; font-weight: 700; margin: 20px 0 6px; }
+.legal p, .legal ul, .legal ol { margin: 0 0 14px; }
+.legal ul, .legal ol { padding-left: 1.3em; }
+.legal li { margin-bottom: 6px; }
+.legal a { color: var(--main); font-weight: 600; }
+.legal .dated { color: var(--muted); font-size: 15px; }
+.legal .box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; margin: 0 0 16px; }
+.legal .box p:last-child, .legal .box ul:last-child { margin-bottom: 0; }
+.legal table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 15.5px; background: var(--card); border: 1px solid var(--line); }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.legal th { background: #efece4; font-weight: 700; }
+.legal .phones { list-style: none; padding: 0; }
+.legal .phones li { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 0; border-bottom: 1px solid var(--line); margin: 0; }
+@media (max-width: 600px) {
+  .legal table, .legal thead, .legal tbody, .legal tr, .legal th, .legal td { display: block; }
+  .legal thead { display: none; }
+  .legal tr { border-bottom: 1px solid var(--line); padding: 6px 0; }
+  .legal td { border: 0; padding: 4px 12px; }
+  .legal td:first-child { font-weight: 700; padding-top: 10px; }
+}
