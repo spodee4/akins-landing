@@ -46,6 +46,10 @@
     {
       "source": "/app-support",
       "destination": "/app-support.html"
+    },
+    {
+      "source": "/app-health-data",
+      "destination": "/app-health-data.html"
     }
   ]
 }
