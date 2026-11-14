@@ -34,6 +34,18 @@
     {
       "source": "/savings",
       "destination": "/member-savings.html"
+    },
+    {
+      "source": "/app-privacy",
+      "destination": "/app-privacy.html"
+    },
+    {
+      "source": "/app-terms",
+      "destination": "/app-terms.html"
+    },
+    {
+      "source": "/app-support",
+      "destination": "/app-support.html"
     }
   ]
 }
