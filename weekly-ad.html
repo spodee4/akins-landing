@@ -110,7 +110,7 @@
 
   <div class="util">
     <span>Family-owned in Central &amp; Eastern Washington <span class="hide-sm">since 1963</span></span>
-    <span>This week's ad runs <b id="utilWeek">Wed&ndash;Tue</b> &middot; <a href="weekly-ad.html">See it</a></span>
+    <span>Prices good <b id="utilWeek">Wed Nov 18 through Nov 26</b> &middot; <a href="weekly-ad.html">See the ad</a></span>
   </div>
 
   <nav class="nav" id="nav">
@@ -131,7 +131,7 @@
   <div class="page-header">
     <div class="eyebrow">Weekly ad</div>
     <h1>This week's deals</h1>
-    <p>Prices good Wednesday through Tuesday. Pick your store to see its ad.</p>
+    <p>Prices good <span id="pageWeek">Wed Nov 18 through Nov 26</span>. Pick your store to see its ad.</p>
   </div>
 
   <div class="wrap">
@@ -238,7 +238,9 @@
       // Overrides only apply in the ad week they were set for (Wed start, local time).
       const n = new Date(); const w = new Date(n); w.setDate(n.getDate() - ((n.getDay() + 4) % 7));
       const wk = `${w.getFullYear()}-${String(w.getMonth() + 1).padStart(2, '0')}-${String(w.getDate()).padStart(2, '0')}`;
-      if (map && map.week === wk && map.stores && map.stores[select.value]) AD_URL = 'weekly-ad/' + map.stores[select.value];
+      const today = `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`;
+      const inWeek = map && (map.week === wk || (map.until && today >= map.week && today <= map.until));
+      if (inWeek && map.stores && map.stores[select.value]) AD_URL = 'weekly-ad/' + map.stores[select.value];
     } catch (e) {}
     document.getElementById('adDownload').href = AD_URL;
     select.addEventListener('change', () => {

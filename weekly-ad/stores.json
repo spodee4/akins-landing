@@ -1,6 +1,11 @@
 {
-  "week": "2026-10-07",
+  "week": "2026-11-18",
+  "until": "2026-11-26",
   "stores": {
-    "oroville": "oroville.pdf"
+    "goldendale": "ad-goldendale.pdf",
+    "quincy": "ad-quincy.pdf",
+    "ritzville": "ad-ritzville-soap-lake-oroville.pdf",
+    "soap-lake": "ad-ritzville-soap-lake-oroville.pdf",
+    "oroville": "ad-ritzville-soap-lake-oroville.pdf"
   }
 }

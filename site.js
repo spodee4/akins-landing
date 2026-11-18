@@ -20,7 +20,10 @@
   if (now >= PRINTED.start && now <= PRINTED.end) { wed = PRINTED.start; tue = PRINTED.end; }
   const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   const week = `${fmt(wed)} – ${fmt(tue)}`;
-  ['utilWeek', 'heroWeek'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = week; });
+  const inPrinted = now >= PRINTED.start && now <= PRINTED.end;
+  const sentence = inPrinted ? `Wed ${fmt(wed)} through ${fmt(tue)}` : `Wed ${fmt(wed)} through Tue ${fmt(tue)}`;
+  ['utilWeek', 'pageWeek'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = sentence; });
+  const hw = document.getElementById('heroWeek'); if (hw) hw.textContent = week;
 
   // Open-now chip per store card, judged in Pacific time (all five stores are in Washington).
   const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(now);

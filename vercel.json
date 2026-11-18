@@ -32,6 +32,42 @@
   ],
   "rewrites": [
     {
+      "source": "/savings/g",
+      "destination": "/savings-goldendale.html"
+    },
+    {
+      "source": "/savings/goldendale",
+      "destination": "/savings-goldendale.html"
+    },
+    {
+      "source": "/savings/q",
+      "destination": "/savings-quincy.html"
+    },
+    {
+      "source": "/savings/quincy",
+      "destination": "/savings-quincy.html"
+    },
+    {
+      "source": "/savings/r",
+      "destination": "/savings-ritzville-soap-lake-oroville.html"
+    },
+    {
+      "source": "/savings/ritzville",
+      "destination": "/savings-ritzville-soap-lake-oroville.html"
+    },
+    {
+      "source": "/savings/soap-lake",
+      "destination": "/savings-ritzville-soap-lake-oroville.html"
+    },
+    {
+      "source": "/savings/oroville",
+      "destination": "/savings-ritzville-soap-lake-oroville.html"
+    },
+    {
+      "source": "/savings/ritzville-soap-lake-oroville",
+      "destination": "/savings-ritzville-soap-lake-oroville.html"
+    },
+    {
       "source": "/savings",
       "destination": "/member-savings.html"
     },

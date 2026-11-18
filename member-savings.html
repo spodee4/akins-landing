@@ -110,7 +110,7 @@
 
   <div class="util">
     <span>Family-owned in Central &amp; Eastern Washington <span class="hide-sm">since 1963</span></span>
-    <span>This week's ad runs <b id="utilWeek">Wed&ndash;Tue</b> &middot; <a href="weekly-ad.html">See it</a></span>
+    <span>Prices good <b id="utilWeek">Wed Nov 18 through Nov 26</b> &middot; <a href="weekly-ad.html">See the ad</a></span>
   </div>
 
   <nav class="nav" id="nav">
@@ -140,6 +140,17 @@
         <div class="ad-frame-wrapper">
           <div class="ad-frame-header">
             <h3>Current Member Savings</h3>
+            <span class="ad-date" id="setName"></span>
+            <label class="ad-store-pick" id="storePick">
+              <span>Store</span>
+              <select id="storeSelect" aria-label="Choose your store">
+                <option value="quincy">Quincy</option>
+                <option value="oroville">Oroville</option>
+                <option value="soap-lake">Soap Lake</option>
+                <option value="goldendale">Goldendale (Holcomb's Market)</option>
+                <option value="ritzville">Ritzville</option>
+              </select>
+            </label>
             <div class="ad-frame-actions">
               <button class="ad-action-btn" onclick="printAd()" title="Print Member Savings">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -200,8 +211,34 @@
 
 
   <script type="module">
-    // Member savings is one PDF for every store, replaced each time NWG sends a new one.
-    const AD_URL = 'member-savings/current.pdf';
+    // Member Deals differ by store set (Goldendale / Quincy / Ritzville + Soap Lake + Oroville),
+    // one PDF per set. A set page (/savings/g, /savings/q, /savings/r) fixes the set via
+    // <body data-set>; the general page picks it from ?store=, the remembered store, or the picker.
+    const SETS = {
+      'goldendale': { pdf: 'member-savings/goldendale.pdf', name: "Goldendale (Holcomb's Market)" },
+      'quincy': { pdf: 'member-savings/quincy.pdf', name: 'Quincy' },
+      'ritzville-soap-lake-oroville': { pdf: 'member-savings/ritzville-soap-lake-oroville.pdf', name: 'Ritzville, Soap Lake & Oroville' },
+    };
+    const STORE_SET = { 'goldendale': 'goldendale', 'quincy': 'quincy', 'ritzville': 'ritzville-soap-lake-oroville', 'soap-lake': 'ritzville-soap-lake-oroville', 'oroville': 'ritzville-soap-lake-oroville' };
+    const STORE_KEY = 'akinsAdStore';
+    const select = document.getElementById('storeSelect');
+    let setKey = document.body.dataset.set;
+    if (setKey) {
+      document.getElementById('storePick').style.display = 'none';
+    } else {
+      let store = new URLSearchParams(location.search).get('store');
+      if (!store) { try { store = localStorage.getItem(STORE_KEY); } catch (e) {} }
+      if (store && STORE_SET[store]) select.value = store;
+      setKey = STORE_SET[select.value];
+      select.addEventListener('change', () => {
+        try { localStorage.setItem(STORE_KEY, select.value); } catch (e) {}
+        const u = new URL(location.href); u.searchParams.set('store', select.value);
+        location.href = u.toString();
+      });
+    }
+    const AD_URL = SETS[setKey].pdf;
+    document.getElementById('setName').textContent = SETS[setKey].name;
+    document.getElementById('adDownload').href = AD_URL;
 
 
     // PDF.js setup
