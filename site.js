@@ -11,10 +11,13 @@
 
   // Ad week runs Wednesday through Tuesday (local time), same rule as the weekly ad page.
   const now = new Date();
-  const wed = new Date(now);
+  // PRINTED dates win when the printed ad runs longer than Wed-Tue (Thanksgiving ad 2026: Nov 18-26).
+  const PRINTED = { start: new Date(2026, 10, 18), end: new Date(2026, 10, 26, 23, 59, 59) };
+  let wed = new Date(now);
   wed.setDate(now.getDate() - ((now.getDay() + 4) % 7));
-  const tue = new Date(wed);
+  let tue = new Date(wed);
   tue.setDate(wed.getDate() + 6);
+  if (now >= PRINTED.start && now <= PRINTED.end) { wed = PRINTED.start; tue = PRINTED.end; }
   const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   const week = `${fmt(wed)} – ${fmt(tue)}`;
   ['utilWeek', 'heroWeek'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = week; });

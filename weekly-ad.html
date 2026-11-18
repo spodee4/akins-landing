@@ -168,6 +168,10 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Download
               </a>
+              <a class="ad-action-btn" id="tgGuide" href="weekly-ad/thanksgiving-guide-2026.pdf" target="_blank" rel="noopener" title="Thanksgiving Guide (PDF)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Thanksgiving Guide
+              </a>
             </div>
           </div>
 
@@ -246,10 +250,13 @@
     // Ad week dates (Wed-Tue)
     const now = new Date();
     const day = now.getDay();
-    const wed = new Date(now);
+    let wed = new Date(now);
     wed.setDate(now.getDate() - ((day + 4) % 7));
-    const tue = new Date(wed);
+    let tue = new Date(wed);
     tue.setDate(wed.getDate() + 6);
+    // PRINTED dates win when the printed ad runs longer than Wed-Tue (Thanksgiving ad 2026: Nov 18-26).
+    const PRINTED = { start: new Date(2026, 10, 18), end: new Date(2026, 10, 26, 23, 59, 59) };
+    if (now >= PRINTED.start && now <= PRINTED.end) { wed = PRINTED.start; tue = PRINTED.end; }
     const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     document.getElementById('adDate').textContent = `${fmt(wed)} — ${fmt(tue)}`;
 
