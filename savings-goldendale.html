@@ -237,7 +237,8 @@
         location.href = u.toString();
       });
     }
-    const AD_URL = SETS[setKey].pdf;
+    // Absolute URL: PDF.js resolves against the page address, not <base>, on /savings/x paths.
+    const AD_URL = new URL(SETS[setKey].pdf, document.baseURI).href;
     document.getElementById('setName').textContent = SETS[setKey].name;
     document.getElementById('adDownload').href = AD_URL;
 
